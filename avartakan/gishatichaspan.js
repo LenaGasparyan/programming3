@@ -1,6 +1,7 @@
-class Gishatichaspan extends LivingCreature{
+class Gishatichaspan {
     constructor(x, y) {
-        super(x,y)
+        this.x = x
+        this.y = y
         this.energy = 20
         this.directions = []
     }
@@ -18,7 +19,19 @@ class Gishatichaspan extends LivingCreature{
     }
     chooseCell(char4) {
         this.getNewCoordinates()
-     return super.chooseCell(char4)
+        let found = []
+
+
+        for (let i in this.directions) {
+            let x = this.directions[i][0]
+            let y = this.directions[i][1]
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] == char4) {
+                    found.push(this.directions[i])
+                }
+            }
+            
+        }
 
 
         return found
@@ -27,7 +40,7 @@ class Gishatichaspan extends LivingCreature{
 
     mul() {
         let emptyCell = this.chooseCell(0)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             let newX = newCell[0]
@@ -81,7 +94,7 @@ class Gishatichaspan extends LivingCreature{
 
     move() {
         let emptyCell = this.chooseCell(0)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             let newX = newCell[0]

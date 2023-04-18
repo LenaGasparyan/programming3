@@ -40,7 +40,7 @@ class Sky {
 
     mul() {
         let emptyCell = this.chooseCell(6)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             let newX = newCell[0]
@@ -60,7 +60,7 @@ class Sky {
 
     eat() {
         let emptyCell = this.chooseCell(6)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             this.energy += 10
@@ -94,7 +94,7 @@ class Sky {
 
     move() {
         let emptyCell = this.chooseCell(0)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             let newX = newCell[0]

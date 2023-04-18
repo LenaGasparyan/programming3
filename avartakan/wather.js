@@ -1,11 +1,10 @@
-class GrassEater extends LivingCreature{
+class Wather {
     constructor(x, y) {
-      super(x,y)
-        this.energy = 10
-        this.directions = [];
+        this.x = x
+        this.y = y
+        this.energy = 70
+        this.directions = []
     }
-
-
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -18,61 +17,72 @@ class GrassEater extends LivingCreature{
             [this.x + 1, this.y + 1]
         ];
     }
-
-
-
-    chooseCell(char,char5) {
+    chooseCell(char6) {
         this.getNewCoordinates()
-        return super.chooseCell(char,char5)
+        let found = []
+
+
+        for (let i in this.directions) {
+            let x = this.directions[i][0]
+            let y = this.directions[i][1]
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] == char6) {
+                    found.push(this.directions[i])
+                }
+            }
+            
+        }
+
+
+        return found
 
     }
+
     mul() {
         let emptyCell = this.chooseCell(0)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             let newX = newCell[0]
             let newY = newCell[1]
 
-            matrix[newY][newX] = 2
+            matrix[newY][newX] = 7
 
-            let grEat = new GrassEater(newX, newY)
+            let wa = new Wather(newX, newY)
 
-            grassEaterArr.push(grEat)
+            WatherArr.push(wa)
+
+
 
 
         }
     }
 
-
     eat() {
-        let emptyCell = this.chooseCell(1,5)
+        let emptyCell = this.chooseCell(6)
         let newCell = random(emptyCell)
 
         if (newCell) {
-            this.energy += 5
+            this.energy += 30
             let newX = newCell[0]
             let newY = newCell[1]
 
-            for (let i in grassArr) {
-                if (newX == grassArr[i].x && newY == grassArr[i].y) {
-                    grassArr.splice(i, 1)
+            for (let i in FairyArr) {
+                if (newX == FairyArr[i].x && newY == FairyArr[i].y) {
+                    FairyArr.splice(i, 1)
+                    break
                 }
             }
-            for (let i in gishatichaspanArr) {
-                if (newX == gishatichaspanArr[i].x && newY == gishatichaspanArr[i].y) {
-                    gishatichaspanArr.splice(i, 1)
-                }
-            }
+            
 
-            matrix[newY][newX] = 2
+            matrix[newY][newX] = 7
             matrix[this.y][this.x] = 0
 
 
             this.x = newX
             this.y = newY
 
-            if (this.energy > 30) {
+            if (this.energy > 20) {
                 this.mul()
             }
 
@@ -84,13 +94,13 @@ class GrassEater extends LivingCreature{
 
     move() {
         let emptyCell = this.chooseCell(0)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             let newX = newCell[0]
             let newY = newCell[1]
 
-            matrix[newY][newX] = 2
+            matrix[newY][newX] = 7
             matrix[this.y][this.x] = 0
 
             this.x = newX
@@ -103,16 +113,16 @@ class GrassEater extends LivingCreature{
             }
         }
     }
-
     die() {
         matrix[this.y][this.x] = 0
 
-        for (let i in grassEaterArr) {
-            if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
-                grassEaterArr.splice(i, 1)
+        for (let i in WatherArr) {
+            if (this.x == WatherArr[i].x && this.y == WatherArr[i].y) {
+                WatherArr.splice(i, 1)
             }
         }
     }
 
 
-}       
+
+}

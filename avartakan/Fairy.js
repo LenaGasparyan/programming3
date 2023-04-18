@@ -35,7 +35,7 @@ class Fairy {
         mul() {
             this.multiply++
             let emptyCell = this.chooseCell(0)
-            let newCell = random(emptyCell)
+            let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
     
                  
                         if (this.multiply >= 5 && newCell )  {
@@ -62,7 +62,7 @@ class Fairy {
         }  
           move() {
             let emptyCell = this.chooseCell(0)
-            let newCell = random(emptyCell)
+            let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
     
             if (newCell) {
                 let newX = newCell[0]

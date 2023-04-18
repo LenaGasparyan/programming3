@@ -37,7 +37,7 @@ class Krak {
     }
     eat() {
         let emptyCell = this.chooseCell(7)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             this.energy += 5
@@ -68,7 +68,7 @@ class Krak {
     }
     move() {
         let emptyCell = this.chooseCell(0)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             let newX = newCell[0]
@@ -90,7 +90,7 @@ class Krak {
     mul() {
         this.multiply++
         let emptyCell = this.chooseCell(7)
-        let newCell = random(emptyCell)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (this.multiply > 3 && newCell) {
             var newX = newCell[0]
             var newY = newCell[1]
